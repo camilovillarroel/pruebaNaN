@@ -2,6 +2,23 @@
   <img src="<%= @todo.image %>" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title"><%= @todo.description %></h5>
-    <h6><%= @usertodo %></h6>
-    <%= button_to 'Listo', todo_done_path(@todo), class:'btn btn-primary', method: :patch %>
+    <% if @usertodo.done %>
+      <h6>Listo</h6>
+    <% else %>
+      <h6>No listo</h6>
+    <% end %>
+    <h6>Usuarios con tarea lista</h6>
+    <% @users_array.each do |user| %>
+    <% if UserTodo.find_by(todo_id: @todo.id).done %>
+    <br>
+    <%= user.email %>
+    <% end %>
+    <% end %>
+
+    
+    <% if @usertodo.done %>
+      <%= button_to 'No listo', todo_undone_path(@todo), class:'btn btn-danger', method: :patch %>
+    <% else %>
+      <%= button_to 'Listo', todo_done_path(@todo), class:'btn btn-primary', method: :patch %>
+    <% end %>
     
