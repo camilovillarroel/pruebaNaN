@@ -2,3 +2,6 @@
   <img src="<%= @todo.image %>" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title"><%= @todo.description %></h5>
+    <h6><%= @usertodo %></h6>
+    <%= button_to 'Listo', todo_done_path(@todo), class:'btn btn-primary', method: :patch %>
+    
