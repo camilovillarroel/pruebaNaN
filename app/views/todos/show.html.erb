@@ -9,7 +9,7 @@
     <% end %>
     <h6>Usuarios con tarea lista</h6>
     <% @users_array.each do |user| %>
-    <% if UserTodo.find_by(todo_id: @todo.id).done %>
+    <% if UserTodo.find_by(todo_id: @todo.id, user_id: user.id).done %>
     <br>
     <%= user.email %>
     <% end %>
