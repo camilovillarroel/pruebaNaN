@@ -5,7 +5,7 @@
   <img src="<%= todo.image %>" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title"><%= todo.description %></h5>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <%= link_to 'Detalle', todo_path(todo), class:'btn btn-primary'%>
   </div>
 </div>
  
