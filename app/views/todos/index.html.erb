@@ -7,6 +7,11 @@
     <h5 class="card-title"><%= todo.description %></h5>
     <%= link_to 'Detalle', todo_path(todo), class:'btn btn-primary'%>
 
+    <% if @usertodo.done %>
+      <%= button_to 'No listo', todo_undone_path(todo), class:'btn btn-danger', method: :patch %>
+    <% else %>
+      <%= button_to 'Listo', todo_done_path(todo), class:'btn btn-primary', method: :patch %>
+    <% end %>
     
   </div>
 </div>
