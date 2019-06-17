@@ -29,7 +29,7 @@
     <% counter = 0  %>
     <% current_user.todos.each do |todo| %>
       
-      <% if UserTodo.find_by(todo_id: todo.id).done %>
+      <% if UserTodo.find_by(todo_id: todo.id, user_id: current_user.id).done %>
       <% counter = counter + 1 %>
       <% end %>
       <% end %>
