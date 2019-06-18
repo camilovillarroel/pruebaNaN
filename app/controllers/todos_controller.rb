@@ -6,9 +6,6 @@ class TodosController < ApplicationController
         if user_signed_in?
             @usertodo = UserTodo.find_by(user_id: current_user.id)
         end
-        
-
-
     end
     
     def show
