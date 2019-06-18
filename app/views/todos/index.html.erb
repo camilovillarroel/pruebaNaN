@@ -2,17 +2,26 @@
 <% @todos.each do |todo| %>
 <div class="col-sm-4">
 <div class="card" style="width: 18rem;">
-  <img src="<%= todo.image %>" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><%= todo.description %></h5>
-    <%= link_to 'Detalle', todo_path(todo), class:'btn btn-primary'%>
-  <%# if user_signed_in? %>
-    <%# if @usertodo.done %>
-      <%#= button_to 'No listo', todo_undone_path(todo), class:'btn btn-danger', method: :patch %>
-    <%# else %>
-      <%#= button_to 'Listo', todo_done_path(todo), class:'btn btn-primary', method: :patch %>
-    <%# end %>
-  <%# end  %>
+<% if user_signed_in? %>
+    <% if todo.user_todos.find_by(user_id: current_user.id).done  %>
+      <%= link_to(image_tag todo.image, class:'card-img-top') %>
+    <% else %>
+      <%= link_to(image_tag todo.image, class:'card-img-top bw')%>
+    <% end %>
+  <% else %>
+     <%= link_to(image_tag todo.image, class:'card-img-top bw')%>
+<% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= todo.description %></h5>
+        <%= link_to 'Detalle', todo_path(todo), class:'btn btn-primary'%>
+
+  <% if user_signed_in? %>
+    <% if todo.user_todos.find_by(user_id: current_user.id).done  %>
+      <%= button_to 'No listo', todo_undone_path(todo), class:'btn btn-danger', method: :patch %>
+    <% else %>
+      <%= button_to 'Listo', todo_done_path(todo), class:'btn btn-primary', method: :patch %>
+    <% end %>
+<% end %>
   </div>
 </div>
  

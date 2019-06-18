@@ -3,9 +3,6 @@ class TodosController < ApplicationController
     
     def index
         @todos = Todo.all
-        if user_signed_in?
-            @usertodo = UserTodo.find_by(user_id: current_user.id)
-        end
     end
     
     def show
